@@ -3,6 +3,7 @@
 	"displayName": "one-extension",
 	"description": "have a try",
 	"version": "0.0.1",
+	"publisher": "swatDong",
 	"engines": {
 		"vscode": "^1.51.0"
 	},
