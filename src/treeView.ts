@@ -6,16 +6,12 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | undefined | void> = new vscode.EventEmitter<vscode.TreeItem | undefined | void>();
     readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-    private parent: vscode.TreeItem;
-    private child: vscode.TreeItem;
+    private parent: vscode.TreeItem = new vscode.TreeItem("Tree Item A (Parent)");
+    private child: vscode.TreeItem = new vscode.TreeItem("Tree Item AA (Child)");
 
-    private showChild: boolean;
+    private showChild: boolean = false;
 
     constructor() {
-        this.parent = new vscode.TreeItem("Tree Item A (Parent)", vscode.TreeItemCollapsibleState.None);
-        this.child = new vscode.TreeItem("Tree Item AA (Child)", vscode.TreeItemCollapsibleState.None);
-
-        this.showChild = false;
     }
 
     getTreeItem(element: vscode.TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
