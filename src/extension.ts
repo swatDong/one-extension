@@ -4,9 +4,7 @@ import TreeDataProviderInstance from './treeView';
 export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('one-extension.helloWorld', async () => {
 		// vscode.window.showInformationMessage('Hello World from one-extension!');
-		TreeDataProviderInstance.funcRefreshA();
-		await delay(5000);
-		TreeDataProviderInstance.funcExpandA();
+		TreeDataProviderInstance.funcExpand();
 	});
 
 	context.subscriptions.push(disposable);
@@ -16,7 +14,3 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
-
-function delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}

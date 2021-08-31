@@ -6,16 +6,16 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | undefined | void> = new vscode.EventEmitter<vscode.TreeItem | undefined | void>();
     readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-    private itemA: vscode.TreeItem;
-    private itemAA: vscode.TreeItem;
+    private parent: vscode.TreeItem;
+    private child: vscode.TreeItem;
 
-    private showAA: boolean;
+    private showChild: boolean;
 
     constructor() {
-        this.itemA = new vscode.TreeItem("A (NoChild)", vscode.TreeItemCollapsibleState.None);
-        this.itemAA = new vscode.TreeItem("AA (NoChild)", vscode.TreeItemCollapsibleState.None);
+        this.parent = new vscode.TreeItem("Tree Item A (Parent)", vscode.TreeItemCollapsibleState.None);
+        this.child = new vscode.TreeItem("Tree Item AA (Child)", vscode.TreeItemCollapsibleState.None);
 
-        this.showAA = false;
+        this.showChild = false;
     }
 
     getTreeItem(element: vscode.TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -24,26 +24,20 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
 
     getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
         if (element === undefined) {
-            // The root, always return A
-            return [this.itemA];
-        } else if (this.showAA) {
-            // Not root, return AA if showAA
-            return [this.itemAA];
+            // The root, always return parent
+            return [this.parent];
+        } else if (this.showChild) {
+            // Not root, return child if showChild
+            return [this.child];
         } else {
-            // Not root and AA is hidden
+            // Not root and child is hidden
             return [];
         }
     }
 
-    funcRefreshA() {
-        this.itemA.label = "A (show AA)";
-        this.itemA.collapsibleState = vscode.TreeItemCollapsibleState.None;
-        this._onDidChangeTreeData.fire();
-    }
-
-    funcExpandA() {
-        this.itemA.collapsibleState = vscode.TreeItemCollapsibleState.Expanded;
-        this.showAA = true;
+    funcExpand() {
+        this.parent.collapsibleState = vscode.TreeItemCollapsibleState.Expanded;
+        this.showChild = true;
         this._onDidChangeTreeData.fire();
     }
 
