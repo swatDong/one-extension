@@ -6,16 +6,17 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     private _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | undefined | void> = new vscode.EventEmitter<vscode.TreeItem | undefined | void>();
     readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | undefined | void> = this._onDidChangeTreeData.event;
 
-    private itemA: vscode.TreeItem;
-    private itemAA: vscode.TreeItem;
+    private hello: vscode.TreeItem;
 
-    private showAA: boolean;
+    private counter: number;
 
     constructor() {
-        this.itemA = new vscode.TreeItem("A (NoChild)", vscode.TreeItemCollapsibleState.None);
-        this.itemAA = new vscode.TreeItem("AA (NoChild)", vscode.TreeItemCollapsibleState.None);
-
-        this.showAA = false;
+        this.hello = new vscode.TreeItem("Hello");
+        this.hello.command = {
+            title: "Hello World",
+            command: "one-extension.helloWorld",
+        }
+        this.counter = 0;
     }
 
     getTreeItem(element: vscode.TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
@@ -23,27 +24,12 @@ class TreeDataProvider implements vscode.TreeDataProvider<vscode.TreeItem> {
     }
 
     getChildren(element?: vscode.TreeItem | undefined): vscode.ProviderResult<vscode.TreeItem[]> {
-        if (element === undefined) {
-            // The root, always return A
-            return [this.itemA];
-        } else if (this.showAA) {
-            // Not root, return AA if showAA
-            return [this.itemAA];
-        } else {
-            // Not root and AA is hidden
-            return [];
-        }
+        return [this.hello];
     }
 
-    funcRefreshA() {
-        this.itemA.label = "A (show AA)";
-        this.itemA.collapsibleState = vscode.TreeItemCollapsibleState.None;
-        this._onDidChangeTreeData.fire();
-    }
-
-    funcExpandA() {
-        this.itemA.collapsibleState = vscode.TreeItemCollapsibleState.Expanded;
-        this.showAA = true;
+    addOne() {
+        this.counter ++;
+        this.hello.label = `Hello (${this.counter})`;
         this._onDidChangeTreeData.fire();
     }
 

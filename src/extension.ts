@@ -3,10 +3,7 @@ import TreeDataProviderInstance from './treeView';
 
 export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('one-extension.helloWorld', async () => {
-		// vscode.window.showInformationMessage('Hello World from one-extension!');
-		TreeDataProviderInstance.funcRefreshA();
-		await delay(5000);
-		TreeDataProviderInstance.funcExpandA();
+		TreeDataProviderInstance.addOne();
 	});
 
 	context.subscriptions.push(disposable);
