@@ -21,65 +21,17 @@
 				"title": "Hello World"
 			}
 		],
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "one-extension",
-					"title": "One Extension",
-					"icon": "info.svg"
-				}
-			]
-		},
-		"views": {
-			"one-extension": [
-				{
-					"id": "exampleView",
-					"name": "exampleView"
-				}
-			]
-		},
 		"taskDefinitions": [
 			{
-			  "type": "one",
-			  "required": [
-				"command"
-			  ],
-			  "properties": {
-				"command": {
-				  "type": "string"
+				"type": "one",
+				"required": [
+					"command"
+				],
+				"properties": {
+					"command": {
+						"type": "string"
+					}
 				}
-			  }
-			}
-		  ],
-		  "problemMatchers": [
-			{
-			  "name": "one-start-watch",
-			  "label": "%one.problemMatchers.oneStartWatch%",
-			  "owner": "One Extension",
-			  "source": "one",
-			  "applyTo": "allDocuments",
-			  "fileLocation": [
-				"relative",
-				"${workspaceFolder}"
-			  ],
-			  "pattern": [
-				{
-				  "regexp": "^.*?\\.js$",
-				  "file": 0
-				},
-				{
-				  "regexp": "^\\s*Line\\s+(\\d+):(\\d+):\\s+(.*)$",
-				  "line": 1,
-				  "column": 2,
-				  "message": 3
-				}
-			  ],
-			  "background": {
-				"activeOnStart": true,
-				"beginsPattern": ".*",
-				"endsPattern": "Compiled|Failed"
-			  },
-			  "severity": "error"
 			}
 		]
 	},
