@@ -17,8 +17,9 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "one-extension.helloWorld",
-				"title": "Hello World"
+				"command": "one-extension.refresh",
+				"title": "Refresh",
+				"icon": "$(refresh)"
 			}
 		],
 		"viewsContainers": {
@@ -35,51 +36,64 @@
 				{
 					"id": "exampleView",
 					"name": "exampleView"
+				},
+				{
+					"id": "environment",
+					"name": "ENVIRONMENT"
+				}
+			]
+		},
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "one-extension.refresh",
+					"group": "inline",
+					"when": "viewItem =~ /^local-/"
 				}
 			]
 		},
 		"taskDefinitions": [
 			{
-			  "type": "one",
-			  "required": [
-				"command"
-			  ],
-			  "properties": {
-				"command": {
-				  "type": "string"
+				"type": "one",
+				"required": [
+					"command"
+				],
+				"properties": {
+					"command": {
+						"type": "string"
+					}
 				}
-			  }
 			}
-		  ],
-		  "problemMatchers": [
+		],
+		"problemMatchers": [
 			{
-			  "name": "one-start-watch",
-			  "label": "%one.problemMatchers.oneStartWatch%",
-			  "owner": "One Extension",
-			  "source": "one",
-			  "applyTo": "allDocuments",
-			  "fileLocation": [
-				"relative",
-				"${workspaceFolder}"
-			  ],
-			  "pattern": [
-				{
-				  "regexp": "^.*?\\.js$",
-				  "file": 0
+				"name": "one-start-watch",
+				"label": "%one.problemMatchers.oneStartWatch%",
+				"owner": "One Extension",
+				"source": "one",
+				"applyTo": "allDocuments",
+				"fileLocation": [
+					"relative",
+					"${workspaceFolder}"
+				],
+				"pattern": [
+					{
+						"regexp": "^.*?\\.js$",
+						"file": 0
+					},
+					{
+						"regexp": "^\\s*Line\\s+(\\d+):(\\d+):\\s+(.*)$",
+						"line": 1,
+						"column": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".*",
+					"endsPattern": "Compiled|Failed"
 				},
-				{
-				  "regexp": "^\\s*Line\\s+(\\d+):(\\d+):\\s+(.*)$",
-				  "line": 1,
-				  "column": 2,
-				  "message": 3
-				}
-			  ],
-			  "background": {
-				"activeOnStart": true,
-				"beginsPattern": ".*",
-				"endsPattern": "Compiled|Failed"
-			  },
-			  "severity": "error"
+				"severity": "error"
 			}
 		]
 	},

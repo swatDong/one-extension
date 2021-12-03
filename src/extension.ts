@@ -4,12 +4,7 @@ import { OneTaskProvider } from './taskProvider';
 import TreeDataProviderInstance from './treeView';
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.commands.registerCommand('one-extension.helloWorld', async () => {
-		TreeDataProviderInstance.addOne();
-	});
-
-	context.subscriptions.push(disposable);
-	vscode.window.registerTreeDataProvider('exampleView', TreeDataProviderInstance);
+	vscode.window.registerTreeDataProvider('environment', TreeDataProviderInstance);
 
 	const taskProvider: OneTaskProvider = new OneTaskProvider();
 	context.subscriptions.push(
