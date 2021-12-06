@@ -2,8 +2,14 @@ import * as vscode from 'vscode';
 import { onDidStartTaskProcess, onDidEndTaskProcess } from './taskHandler';
 import { OneTaskProvider } from './taskProvider';
 import TreeDataProviderInstance from './treeView';
+import { WebviewPanel } from './webviewPanel';
 
 export function activate(context: vscode.ExtensionContext) {
+	let disposable = vscode.commands.registerCommand('one-extension.helloWorld', async () => {
+		WebviewPanel.createOrShow(context.extensionUri);
+	});
+	context.subscriptions.push(disposable);
+
 	vscode.window.registerTreeDataProvider('environment', TreeDataProviderInstance);
 
 	const taskProvider: OneTaskProvider = new OneTaskProvider();

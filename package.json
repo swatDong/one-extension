@@ -20,6 +20,10 @@
 				"command": "one-extension.refresh",
 				"title": "Refresh",
 				"icon": "$(refresh)"
+			},
+			{
+				"command": "one-extension.helloWorld",
+				"title": "Hello World"
 			}
 		],
 		"viewsContainers": {
@@ -99,23 +103,38 @@
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
+		"compile": "tsc -p ./ && webpack --mode development",
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
+		"@fluentui/react": "^8.5.1",
 		"@types/vscode": "^1.51.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.2.2",
 		"@types/node": "14.x",
-		"eslint": "^7.27.0",
+		"@types/react": "^17.0.3",
+		"@types/react-dom": "^17.0.2",
+		"@types/react-router-dom": "^5.1.7",
 		"@typescript-eslint/eslint-plugin": "^4.26.0",
 		"@typescript-eslint/parser": "^4.26.0",
+		"css-loader": "^5.1.3",
+		"eslint": "^7.27.0",
 		"glob": "^7.1.7",
 		"mocha": "^8.4.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-intl": "^5.13.5",
+		"react-router-dom": "^5.2.0",
+		"sass": "^1.32.8",
+		"sass-loader": "^10.0.1",
+		"style-loader": "^2.0.0",
+		"ts-loader": "^8.0.15",
 		"typescript": "^4.2.4",
-		"vscode-test": "^1.5.2"
+		"vscode-test": "^1.5.2",
+		"webpack": "^5.21.1",
+		"webpack-cli": "^4.5.0"
 	}
 }
