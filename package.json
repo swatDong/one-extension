@@ -40,46 +40,46 @@
 		},
 		"taskDefinitions": [
 			{
-			  "type": "one",
-			  "required": [
-				"command"
-			  ],
-			  "properties": {
-				"command": {
-				  "type": "string"
+				"type": "one",
+				"required": [
+					"command"
+				],
+				"properties": {
+					"command": {
+						"type": "string"
+					}
 				}
-			  }
 			}
-		  ],
-		  "problemMatchers": [
+		],
+		"problemMatchers": [
 			{
-			  "name": "one-start-watch",
-			  "label": "%one.problemMatchers.oneStartWatch%",
-			  "owner": "One Extension",
-			  "source": "one",
-			  "applyTo": "allDocuments",
-			  "fileLocation": [
-				"relative",
-				"${workspaceFolder}"
-			  ],
-			  "pattern": [
-				{
-				  "regexp": "^.*?\\.js$",
-				  "file": 0
+				"name": "one-start-watch",
+				"label": "%one.problemMatchers.oneStartWatch%",
+				"owner": "One Extension",
+				"source": "one",
+				"applyTo": "allDocuments",
+				"fileLocation": [
+					"relative",
+					"${workspaceFolder}"
+				],
+				"pattern": [
+					{
+						"regexp": "^.*?\\.js$",
+						"file": 0
+					},
+					{
+						"regexp": "^\\s*Line\\s+(\\d+):(\\d+):\\s+(.*)$",
+						"line": 1,
+						"column": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": ".*",
+					"endsPattern": "Compiled|Failed"
 				},
-				{
-				  "regexp": "^\\s*Line\\s+(\\d+):(\\d+):\\s+(.*)$",
-				  "line": 1,
-				  "column": 2,
-				  "message": 3
-				}
-			  ],
-			  "background": {
-				"activeOnStart": true,
-				"beginsPattern": ".*",
-				"endsPattern": "Compiled|Failed"
-			  },
-			  "severity": "error"
+				"severity": "error"
 			}
 		]
 	},
@@ -103,5 +103,8 @@
 		"mocha": "^8.4.0",
 		"typescript": "^4.2.4",
 		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"vscode-extension-telemetry": "^0.4.3"
 	}
 }
