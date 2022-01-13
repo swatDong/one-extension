@@ -81,7 +81,36 @@
 			  },
 			  "severity": "error"
 			}
-		]
+		],
+		"configuration": {
+			"title": "One",
+			"properties": {
+				"one.checklistSetting": {
+					"type": "object",
+					"description": "An example checklist setting.",
+					"properties": {
+						"cat": {
+							"type": "boolean",
+							"description": "there's a cat"
+						},
+						"dog": {
+							"type": "boolean",
+							"description": "there's a dog"
+						},
+						"me": {
+							"type": "boolean",
+							"description": "I'm there"
+						}
+					},
+					"additionalProperties": false,
+					"default": {
+						"cat": false,
+						"dog": false,
+						"me": true
+					}
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
