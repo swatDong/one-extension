@@ -19,6 +19,10 @@
 			{
 				"command": "one-extension.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "one-extension.precheck",
+				"title": "Pre Check"
 			}
 		],
 		"taskDefinitions": [
@@ -30,6 +34,9 @@
 				"properties": {
 					"command": {
 						"type": "string"
+					},
+					"args": {
+						"type": "object"
 					}
 				}
 			}

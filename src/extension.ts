@@ -9,6 +9,14 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
+	let tryCmd = vscode.commands.registerCommand("one-extension.precheck", async (args: any) => {
+		const allArgs = args ? args.join(", ") : "NO ARGS";
+		console.log(allArgs);
+		return "0";
+	});
+
+	context.subscriptions.push(tryCmd);
+
 	const taskProvider: OneTaskProvider = new OneTaskProvider();
 	context.subscriptions.push(
 	  vscode.tasks.registerTaskProvider(OneTaskProvider.type, taskProvider)
